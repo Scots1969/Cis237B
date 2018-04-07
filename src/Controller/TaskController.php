@@ -9,19 +9,21 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-/**
- * @Route("/new-task")
- */
 
 
 class TaskController extends BaseController{
+
+  /**
+   * @Route("/new-task")
+   */
+
 
   public function new() {
     $task = new Task("Need to wash the dishes!", new \DateTime("today"));
 
     $form = $this->createFormBuilder($task)
-      ->add('description', TextType::class)
-      ->add('dueDate', DateType::class)
+      ->add('name', TextType::class)
+      ->add('expiration_date', DateType::class)
       ->add('save', SubmitType::class, ['label' => 'Create new Task'])
       ->getForm();
 
