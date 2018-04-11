@@ -9,13 +9,13 @@ class Task {
   public $expiration_date;
   public $icon;
 
-  function __construct(string $name, \DateTime $expiration_date){
+  function __construct(string $name, \DateTime $expiration_date, $icon){
     $this->name = $name;
     $this->expiration_date = $expiration_date;
-
+    $this->icon = $icon;
   }
 
-  public function __getName() : string {
+  public function getName() : string {
     return $this->name;
   }
 
@@ -23,7 +23,7 @@ class Task {
     $this->name = $name;
   }
 
-  public function __getExpirationDate() : \DateTime{
+  public function getExpirationDate() : \DateTime{
     return $this->expiration_date;
   }
 
@@ -31,4 +31,11 @@ class Task {
     $this->expiration_date = $expiration_date;
   }
 
+  public function getIcon() {
+    return $this->icon;
+  }
+
+  public function setIcon($icon){
+    $this->icon = $icon;
+  }
 }

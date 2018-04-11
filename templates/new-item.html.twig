@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div>
+
+{{ form_start(task)}}
+{{ form_widget(task)}}
+{{ form_end(task)}}
+
+easy_admin:
+    design:
+        menu:
+            - User
+            - Product
+            - { entity: 'Category', label: 'Tags' }
+
+
+</div>
+
+{% endblock %}

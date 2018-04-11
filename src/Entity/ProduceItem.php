@@ -9,10 +9,10 @@ class ProduceItem {
   private $expiration_date;
   private $icon;
 
-  function __construct(string $name, \DateTime $expiration_date){
+  function __construct(string $name, \DateTime $expiration_date, $icon){
     $this->name = $name;
     $this->expiration_date = $expiration_date;
-    
+    $this->icon = $icon;
   }
 
   public function __getName() : string {
@@ -29,6 +29,14 @@ class ProduceItem {
 
   public function setExpirationDate(\DateTime $expiration_date = null){
     $this->expiration_date = $expiration_date;
+  }
+
+  public function __getIcon() : string {
+    return $this->icon;
+  }
+
+  public function setIcon(string $icon){
+    $this->icon = $icon;
   }
 
 }
