@@ -5,15 +5,14 @@
 <div>
 
 {{ form_start(task)}}
-{{ form_widget(task)}}
-{{ form_end(task)}}
 
-easy_admin:
-    design:
-        menu:
-            - User
-            - Product
-            - { entity: 'Category', label: 'Tags' }
+<div class="form-group">
+{{ form_label(task.name, 'Your name') }}
+</div>
+
+
+
+{{ form_end(task)}}
 
 
 </div>
