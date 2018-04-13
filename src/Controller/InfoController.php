@@ -8,6 +8,7 @@ use App\Entity\Task;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 class InfoController extends BaseController {
 
@@ -15,7 +16,7 @@ class InfoController extends BaseController {
    * @Route("/new-item")
   **/
 
-  public function new() {
+  public function new(Request $request) {
 
       $task = new Task("", new \DateTime("today"),"");
 
@@ -27,7 +28,13 @@ class InfoController extends BaseController {
         ->add('save', SubmitType::class, ['label'=>'Remove'])
         ->getForm();
 
-      return $this->render('new-item.html.twig', ['task' => $form->createView()]);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+          print("<prev>" . print_r($form->getData(),true)."</prev>");
+        }
+
+      return $this->render('new-item.html.twig', ['task_form' => $form->createView()]);
 
   }
 }

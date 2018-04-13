@@ -4,15 +4,36 @@
 
 <div>
 
-{{ form_start(task)}}
+{{ form_start(task_form)}}
 
 <div class="form-group">
-{{ form_label(task.name, 'Your name') }}
+{{form_label(task_form.icon) }}
+{{ form_widget(task_form.icon) }}
+</div>
+
+<div class="form-group">
+{{form_label(task_form.name)}}
+{{form_widget(task_form.name, {'attr': {'class': 'form-control'}})}}
+</div>
+
+<div class="form-group">
+{{form_label(task_form.expiration_date) }}
+{{ form_widget(task_form.expiration_date, {'attr': {'class': 'form-control'}}) }}
 </div>
 
 
 
-{{ form_end(task)}}
+<div>
+  {{form_widget(task_form.sub, { 'attr': {class : 'btn btn-primary'}})}}
+</div>
+
+<div>
+  {{form_widget(task_form.save, { 'attr': {class : 'btn btn-primary'}})}}
+</div>
+
+
+
+{{ form_end(task_form)}}
 
 
 </div>

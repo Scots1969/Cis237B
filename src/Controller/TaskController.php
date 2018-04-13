@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Task;
 use App\Form\TaskType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 //use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 //use Symfony\Component\Form\Extension\Core\Type\DateType;
 //use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,7 +28,9 @@ class TaskController extends BaseController{
   public function new(Request $request) {
     $task = new Task("", new \DateTime("today"),"");
 
-      $form = $this->createForm(TaskType::class, $task);
+      $form = $this->createForm($task);
+
+      
 
       $form->handleRequest($request);
       if($form->isSubmitted()) {
