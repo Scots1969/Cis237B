@@ -28,9 +28,9 @@ class TaskController extends BaseController{
   public function new(Request $request) {
     $task = new Task("", new \DateTime("today"),"");
 
-      $form = $this->createForm($task);
+      $form = $this->createForm(TaskType::class,$task);
 
-      
+
 
       $form->handleRequest($request);
       if($form->isSubmitted()) {

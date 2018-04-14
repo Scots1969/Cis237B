@@ -21,11 +21,11 @@ class InfoController extends BaseController {
       $task = new Task("", new \DateTime("today"),"");
 
       $form = $this->createFormBuilder($task)
-        ->add('icon', TextType::class)
-        ->add('name', TextType::class)
+    
+        ->add('name', TextType::class, ['label'=>'Description'])
         ->add('expiration_date', DateType::class)
-        ->add('sub', SubmitType::class, ['label'=>'Add to Shopping List'])
-        ->add('save', SubmitType::class, ['label'=>'Remove'])
+        ->add('save', SubmitType::class, ['label'=>'Create Produce Items'])
+
         ->getForm();
 
         $form->handleRequest($request);

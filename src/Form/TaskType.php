@@ -16,7 +16,7 @@ class TaskType extends AbstractType{
   public function buildForm(FormBuilderInterface $builder, array $options) {
 
     $builder
-    ->add('name', TextareaType::class)
+    ->add('name', TextareaType::class,['label' => 'Descritpion'])
     ->add('expiration_date', DateType::class)
     ->add('icon', FileType::class, ['label' => 'Upload Image'])
     ->add('save', SubmitType::class, ['label' => 'Create new Task']);
