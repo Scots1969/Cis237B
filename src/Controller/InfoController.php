@@ -5,10 +5,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Task;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Form\TaskType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class InfoController extends BaseController {
 
@@ -20,18 +22,18 @@ class InfoController extends BaseController {
 
       $task = new Task("", new \DateTime("today"),"");
 
-      $form = $this->createFormBuilder($task)
-    
-        ->add('name', TextType::class, ['label'=>'Description'])
-        ->add('expiration_date', DateType::class)
-        ->add('save', SubmitType::class, ['label'=>'Create Produce Items'])
+      $form = $this->createFormBuilder($task);
 
-        ->getForm();
+      $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
-          print("<prev>" . print_r($form->getData(),true)."</prev>");
+        
+          $task = $form->getData();
+          return new Response(
+            '<html><body>New task was added: ' . $task->getName() . ' on ' . $task->getExpirationDate()->format('Y-m-d') . '</body></html>'
+          );
         }
 
       return $this->render('new-item.html.twig', ['task_form' => $form->createView()]);
