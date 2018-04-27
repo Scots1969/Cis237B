@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Task;
+use App\Entity\Icon;
 use App\Form\TaskType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -20,7 +20,7 @@ class InfoController extends BaseController {
 
   public function new(Request $request) {
 
-      $task = new Task("", new \DateTime("today"),"");
+      $task = new Icon("");
 
       $form = $this->createFormBuilder($task);
 
@@ -29,14 +29,27 @@ class InfoController extends BaseController {
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
-        
-          $task = $form->getData();
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityMnaager->persist();
+          $entityManager->flush();
+
+
           return new Response(
-            '<html><body>New task was added: ' . $task->getName() . ' on ' . $task->getExpirationDate()->format('Y-m-d') . '</body></html>'
+            '<html><body>New Icon was added: ' . $task->getIcon . '</body></html>'
           );
         }
 
       return $this->render('new-item.html.twig', ['task_form' => $form->createView()]);
+  }
 
+  /**
+   *@Route("/list-icons")
+   */
+  public function list() {
+    $repository = $this->getDoctrine()->getRepository(Icon::class);
+    $Icon = $repository->findAll();
+    var dump($Icon);
+
+    return $this->render('listIcon.html.twig', ['task' => $Icon]);
   }
 }

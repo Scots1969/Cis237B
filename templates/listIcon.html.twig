@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listing all of the Icons!{% endblock %}
+
+{% block body %}
+
+<ul>
+
+{% for Icon in InfoController}
+
+  <li> {{task.icon}} <\li>
+
+{% endfor %}
+
+</ul>
+
+{% endblock %}

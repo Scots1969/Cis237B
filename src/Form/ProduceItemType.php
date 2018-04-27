@@ -18,11 +18,17 @@ class TaskType extends AbstractType{
     $builder
     ->add('name', TextareaType::class,['label' => 'Descrption'])
     ->add('expiration_date', DateType::class)
-    ->add('icon', FileType::class, ['label' => 'Upload Image'])
+    ->add('icon', ChoiceType::class, [
+      'choices' => [
+       'Cabbage' => 'cabbage',
+       'Pizza' => 'pizza' ,
+       'Soda' => 'soda' ,
+       'Bread' => 'bread' ,
+       'Taco' => 'taco' ,
+       'Shrimp' => 'shrimp']])
     ->add('save', SubmitType::class, ['label' => 'Create new Task']);
   }
 
   public function configureOptions(OptionsResolver $resolver) {
     $resolver->setDefaults(['data_class' => ProduceItem::class]);
   }
-}
