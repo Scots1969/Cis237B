@@ -52,11 +52,13 @@ class ProduceItemController extends BaseController{
    *@Route("/list-items")
    */
   public function list() {
+
     $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
     $ProduceItem = $repository->findAll();
     var dump($ProduceItem);
 
-    return $this->render('list.html.twig', ['students' => $ProduceItem]);    
+    return $this->render('list.html.twig', ['students' => $ProduceItem]);
+    
   }
 
 }

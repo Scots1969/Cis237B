@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class TaskType extends AbstractType{
+class ProduceItemType extends AbstractType{
 
   public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -32,3 +32,4 @@ class TaskType extends AbstractType{
   public function configureOptions(OptionsResolver $resolver) {
     $resolver->setDefaults(['data_class' => ProduceItem::class]);
   }
+}
