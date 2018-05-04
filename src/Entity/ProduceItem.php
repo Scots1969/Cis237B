@@ -37,6 +37,8 @@ class ProduceItem {
   */
   private $icon;
 
+  private $in_shopping_list = true;
+
   function __construct(string $name, \DateTime $expiration_date, $icon){
 
     $this->name = $name;
@@ -74,6 +76,14 @@ class ProduceItem {
 
   public function setIcon($icon){
     $this->icon = $icon;
+  }
+
+  public function getIn_shopping_list() : bool {
+    return $this->in_shopping_list;
+  }
+
+  public function setIn_shopping_list(bool $in_shopping_list){
+    $this->in_shopping_list = $in_shopping_list;
   }
 
 }

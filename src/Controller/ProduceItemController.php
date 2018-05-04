@@ -55,10 +55,10 @@ class ProduceItemController extends BaseController{
 
     $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
     $ProduceItem = $repository->findAll();
-    var dump($ProduceItem);
+    
 
     return $this->render('list.html.twig', ['students' => $ProduceItem]);
-    
+
   }
 
 }

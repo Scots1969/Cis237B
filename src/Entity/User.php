@@ -16,17 +16,14 @@ class User extends BaseUser {
   /**
    * @ORM\Id
    * @ORM\Column(type="integer")
-   * @ORM\GeneratedValue(stategy="AUTO")
+   * @ORM\GeneratedValue(strategy="AUTO")
    */
-   private $id;
+   protected $id;
 
    public function __construct() {
      parent::__construct();
    }
 
-   public function getId() {
-     return $this->$id;
-   }
 
 
 }

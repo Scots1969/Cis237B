@@ -46,11 +46,14 @@ class InfoController extends BaseController {
    *@Route("/list-icons")
    */
   public function list() {
-    
+
 
     $repository = $this->getDoctrine()->getRepository(Icon::class);
     $Icon = $repository->findAll();
-    var dump($Icon);
+    var_dump($Icon);
+
+
+
 
     return $this->render('listIcon.html.twig', ['task' => $task]);
 
