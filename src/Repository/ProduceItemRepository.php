@@ -12,6 +12,9 @@ class ProduceItemRepository extends ServiceEntityRepository{
   }
 
   public function  getShoppingListItems() {
+    return $this->getEntityManager()
+    ->createQuery('')
+    ->getResult();
 }
 
 

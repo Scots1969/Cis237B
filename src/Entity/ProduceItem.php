@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Icon;
 
 /**
-* @ORM\Entity
+* @ORM\Entity(repositoryClass="App\Repository\ProduceItemRepository")
 */
 class ProduceItem {
 

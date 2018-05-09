@@ -50,7 +50,7 @@ class InfoController extends BaseController {
 
     $repository = $this->getDoctrine()->getRepository(Icon::class);
     $Icon = $repository->findAll();
-    var_dump($Icon);
+    
 
 
 
