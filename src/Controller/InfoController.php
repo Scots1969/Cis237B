@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Icon;
+
+use App\Entity\ProduceItem;
+
+
 use App\Form\TaskType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -50,7 +53,7 @@ class InfoController extends BaseController {
 
     $repository = $this->getDoctrine()->getRepository(Icon::class);
     $Icon = $repository->findAll();
-    
+
 
 
 

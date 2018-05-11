@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\ProduceItem;
+use App\Form\ProduceItemType;
 use App\Form\TaskType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -55,8 +56,8 @@ class ProduceItemController extends BaseController{
 
     $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
     $ProduceItem = $repository->findAll();
-    
 
+    var_dump($ProduceItem);
     return $this->render('list.html.twig', ['students' => $ProduceItem]);
 
   }
