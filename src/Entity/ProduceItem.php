@@ -37,7 +37,10 @@ class ProduceItem {
   */
   private $icon;
 
-  private $in_shopping_list = true;
+  /**
+  * @ORM\Column(type="boolean")
+  */
+  private $in_shopping_list;
 
   function __construct(string $name, \DateTime $expiration_date, $icon){
 
