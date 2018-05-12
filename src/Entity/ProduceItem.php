@@ -38,8 +38,8 @@ class ProduceItem {
   private $icon;
 
   /**
-  * @ORM\Column(type="boolean")
-  */
+   * @ORM\COLUMN(type="boolean")
+   */
   private $in_shopping_list;
 
   function __construct(string $name, \DateTime $expiration_date, $icon){
@@ -81,12 +81,13 @@ class ProduceItem {
     $this->icon = $icon;
   }
 
-  public function getIn_shopping_list() : bool {
-    return $this->in_shopping_list;
+  public function getIn_Shopping_List() : bool {
+    return $this->In_Shopping_List;
   }
 
-  public function setIn_shopping_list(bool $in_shopping_list){
-    $this->in_shopping_list = $in_shopping_list;
+  public function setIn_Shopping_List(bool $In_Shopping_List){
+    $this->In_Shopping_List = $In_Shopping_List;
   }
+
 
 }
