@@ -82,11 +82,11 @@ class ProduceItem {
   }
 
   public function getIn_Shopping_List() : bool {
-    return $this->In_Shopping_List;
+    return $this->in_shopping_list;
   }
 
-  public function setIn_Shopping_List(bool $In_Shopping_List){
-    $this->In_Shopping_List = $In_Shopping_List;
+  public function setIn_Shopping_List(bool $in_shopping_list){
+    $this->in_shopping_list = $in_shopping_list;
   }
 
 

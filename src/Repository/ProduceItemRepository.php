@@ -13,9 +13,15 @@ class ProduceItemRepository extends ServiceEntityRepository{
 
   public function  getShoppingListItems() {
     return $this->getEntityManager()
+    ->createQuery('SELECT * FROM smart_shopping_list.produce_item')
+    ->getResult();
+  }
+  public function  getRefrigeratorItems() {
+    return $this->getEntityManager()
     ->createQuery('')
     ->getResult();
-}
+  }
+
 
 
 }
