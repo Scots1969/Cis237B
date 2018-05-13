@@ -38,7 +38,7 @@ class ProduceItem {
   private $icon;
 
   /**
-   * @ORM\Column(type="boolean")
+   * @ORM\Column()
    */
   private $in_shopping_list;
 
@@ -81,11 +81,11 @@ class ProduceItem {
     $this->icon = $icon;
   }
 
-  public function getInShoppingList() : bool {
+  public function getInShoppingList() {
     return $this->in_shopping_list;
   }
 
-  public function setInShoppingList(bool  $in_shopping_list){
+  public function setInShoppingList( $in_shopping_list){
     $this->in_shopping_list = $in_shopping_list;
   }
 
