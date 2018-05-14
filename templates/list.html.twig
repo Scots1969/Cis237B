@@ -4,14 +4,22 @@
 
 {% block body %}
 
+<div class = "bg-primary">
 <ul>
+
+
 
 {% for ProduceItem in ProduceItem %}
 
-  <li> {{ProduceItem.name}}  {{ProduceItem.expiration_date}} {{ProduceItem.Icon}}<\li>
+
+<div class="form-group" >
+
+  <li> {{ProduceItem.Icon}} {{ProduceItem.name}}  {{date(ProduceItem.getExpirationDate)}}  </li>
+
+</div>
 
 {% endfor %}
 
 </ul>
-
+</div>
 {% endblock %}
