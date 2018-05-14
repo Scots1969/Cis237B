@@ -30,7 +30,7 @@ class ProduceItem {
   /**
    *@ORM\Column(type="datetime", name="expiration_date")
   */
-  private $expiration_date;
+  private  $expiration_date;
 
   /**
   * @ORM\Column(type="string", length=50)

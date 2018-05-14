@@ -40,9 +40,14 @@ class ProduceItemController extends BaseController{
         $rootDirPath = $this->get('kernel')->getRootDir() . '/../public/uploads';
         $imageFile->move($rootDirPath, $fileName);
         $ProduceItem->setIcon($fileName);
+        $ProduceItem->setInShoppingList('True');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($ProduceItem);
+        $entityManager->flush();
 
         return new Response(
-          '<html><body>New task added: '. $ProduceItem->getName() . ' on ' . $ProduceItem->getExpirationDate()->format('Y-m-d') .
+          '<html><body>New task added: id'. $ProduceItem->getName() . ' on ' . $ProduceItem->getExpirationDate()->format('Y-m-d') .
           ' Hashed file name: ' . $ProduceItem->getIcon() . '<img src= "/uploads/' .$ProduceItem->getIcon() . '"/></body></html>'
         );
       }
@@ -57,8 +62,8 @@ class ProduceItemController extends BaseController{
     $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
     $ProduceItem = $repository->findAll();
 
-
-    return $this->render('list.html.twig', ['students' => $ProduceItem]);
+    //var_dump($ProduceItem);
+    return $this->render('list.html.twig', ['ProduceItem' => $ProduceItem]);
 
   }
 
