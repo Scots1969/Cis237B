@@ -14,7 +14,7 @@
 
 <div class="form-group" >
 
-  <li> {{ProduceItem.Icon}} {{ProduceItem.name}}  {{date(ProduceItem.getExpirationDate)}}  </li>
+  <li> {{ProduceItem.Icon}} {{ProduceItem.name}}  {{ProduceItem.getExpirationDate|date('Y/m/d')}}  </li>
 
 </div>
 
