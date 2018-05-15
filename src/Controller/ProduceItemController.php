@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\ProduceItem;
 use App\Form\ProduceItemType;
 use App\Form\TaskType;
+use App\Form\Task;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
@@ -106,7 +107,7 @@ class ProduceItemController extends BaseController{
     $repo = $this->getDoctrine()->getRepository(ProduceItem::class);
     $produce = $repo->find($id);
 
-    $form = $this->createForm(TaskType::class,$ProduceItem);
+    $form = $this->createForm(Task::class,$ProduceItem);
 
 
 
