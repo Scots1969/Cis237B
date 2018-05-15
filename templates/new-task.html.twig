@@ -1,6 +1,7 @@
+
 {% extends 'base.html.twig' %}
 
-
+{% block title %}Adding a new item{% endblock %}
 
 {% block body %}
 
@@ -44,7 +45,7 @@
 
   <div>
 
-    {{form_widget(task_form.save, { 'attr': {class : 'btn btn-primary'}})}}
+    {{form_widget(task_form.save, { 'attr': {class : 'btn btn-primary'}, 'label': label })}}
 
   </div>
 

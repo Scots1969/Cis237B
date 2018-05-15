@@ -1,21 +1,12 @@
 {% extends 'base.html.twig' %}
 
-
+{% block title %}Adding Student!{% endblock %}
 
 {% block body %}
 
-
-
 <div>
 
-
-
 {{ form_start(task_form)}}
-
-
-
-
-
 
 <div class="form-group">
 
@@ -24,7 +15,6 @@
 {{form_widget(task_form.name, {'attr': {'class': 'form-control'}})}}
 
 </div>
-
 
 
 <div class="form-group">
@@ -36,27 +26,20 @@
 </div>
 
 
-
 <div>
 
   {{form_widget(task_form.save, { 'attr': {class : 'btn btn-primary'}})}}
 
 </div>
 
-
-
-
-
-
-
 {{ form_end(task_form)}}
-
-
-
-
 
 </div>
 
-
+<div class="mt-5">
+  <button class="btn btn-secondary" id="ajax-update">
+    Update with Ajax
+  </button>
+</div>
 
 {% endblock %}

@@ -15,8 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 //use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 
 class ProduceItemController extends BaseController{
@@ -66,5 +66,63 @@ class ProduceItemController extends BaseController{
     return $this->render('list.html.twig', ['ProduceItem' => $ProduceItem]);
 
   }
+
+  /**
+   * @Route("/produce/{id}", name="get_produce")
+   * @Method("GET")
+   */
+
+  public function getProduceItem(int $id) {
+
+    $repo = $this->getDoctrine()->getRepository(ProduceItem::class);
+    $produce = $repo->find($id);
+
+    return $this->render('list.html.twig', ['ProduceItem' => $produce]);
+}
+  /**
+   * @Route("/produce/{id}", name="delete_produce")
+   * @Method("DELETE")
+   */
+
+  public function deleteItem(int $id){
+
+    $repo = $this->getDoctrine()->getRepository(ProduceItem::class);
+    $produce = $repo->find($id);
+
+    $em = $this->getDoctrine()->getManager();
+    $em->remove($produce);
+    $em->flush();
+
+    return new JsonResponse([], Response::HTTP_NO_CONTENT);
+
+  }
+
+  /**
+   *@Route("/produce/{id}/edit", name="edit_produce")
+   */
+
+  public function editProduceItem(int $id, Request $request) {
+
+    $repo = $this->getDoctrine()->getRepository(ProduceItem::class);
+    $produce = $repo->find($id);
+
+    $form = $this->createForm(TaskType::class,$ProduceItem);
+
+
+
+    $form->handleRequest($request);
+    if($form->isSubmitted()) {
+
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($ProduceItem);
+      $entityManager->flush();
+
+      return new Response(
+        'Produce '. $ProduceItem->getId(). ' was updated'
+      );
+
+        return $this->render('list.html.twig', [ 'form' => $form => createView(), 'label =>'Add Item']);
+  }
+
 
 }
