@@ -20,4 +20,30 @@ use Symfony\Component\HttpFoundation\Response;
 class ShoppingListController extends BaseController{
 
 
+  /**
+   * @Route("produceitem/download", name="list_download")
+   */
+  public function download() {
+
+    $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
+    $ProduceItem = $repository->findAll();
+    $fileName = 'Shopping_list.txt';
+
+    $fp = fopen($fileName, 'w');
+
+    $content = '';
+
+    foreach($ProduceItem as $produce) {
+      $fn = $produce->getName();
+      $ln = $produce->getExpirationDate();
+      $ic =  $produce->getIcon();
+      $content .="$fn $ln $ic:\n";
+    }
+  }
+
+  fwrite($fp, $content);
+  fclose($fp);
+
+  return $this->file->file($fileName)
+
 }

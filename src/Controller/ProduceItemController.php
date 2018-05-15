@@ -68,7 +68,7 @@ class ProduceItemController extends BaseController{
   }
 
   /**
-   * @Route("/produce/{id}", name="get_produce")
+   * @Route("/produce/{id}", name="get_produce", requirements=("id"="\d+"))
    * @Method("GET")
    */
 
@@ -80,7 +80,7 @@ class ProduceItemController extends BaseController{
     return $this->render('list.html.twig', ['ProduceItem' => $produce]);
 }
   /**
-   * @Route("/produce/{id}", name="delete_produce")
+   * @Route("/produce/{id}", name="delete_produce", requirements=("id"="\d+"))
    * @Method("DELETE")
    */
 
@@ -98,7 +98,7 @@ class ProduceItemController extends BaseController{
   }
 
   /**
-   *@Route("/produce/{id}/edit", name="edit_produce")
+   *@Route("/produce/{id}/edit", name="edit_produce",  requirements=("id"="\d+"))
    */
 
   public function editProduceItem(int $id, Request $request) {
@@ -127,7 +127,7 @@ class ProduceItemController extends BaseController{
 }
 
 /**
- * @Route("/produce/{id}/edit", name="ajax_edit_produce")
+ * @Route("/produce/{id}/edit", name="ajax_edit_produce",  requirements=("id"="\d+")))
  * @Method("PUT")
  */
 
@@ -147,29 +147,3 @@ public function ajaxEditStudent(int $id, Request $request){
     return new JsonResponse([], Response::HTTP_OK);
 
 }
-
-/**
- * @Route("produceitem/download", name="List_download")
- */
-public function download() {
-
-  $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
-  $ProduceItem = $repository->findAll();
-  $fileName = 'Shopping_list.txt';
-
-  $fp = fopen($filename, 'w');
-
-  $content = '';
-
-  foreach($ProduceItem as $produce) {
-    $fn = $produce->getName();
-    $ln = $produce->getExpirationDate();
-    $ic =  $produce->getIcon();
-    $content .="$fn $ln $ic:\n";
-  }
-}
-
-fwrite($fp, $content);
-fclose($fp);
-
-return $this->file->file('Shopping_list.txt')
