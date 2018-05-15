@@ -125,4 +125,51 @@ class ProduceItemController extends BaseController{
   }
 
 }
+
+/**
+ * @Route("/produce/{id}/edit", name="ajax_edit_produce")
+ * @Method("PUT")
+ */
+
+public function ajaxEditStudent(int $id, Request $request){
+
+    $produce = $this->getDoctrine()->getRepository(ProduceItem::class)->find($id);
+
+    $data = request->request->all();
+
+    $form = $this->createForm(TaskType::class,$ProduceItem);
+    $form->submit(data);
+
+    $entityManager = $this->getDoctrine()->getManager();
+    $entityManager->persist($ProduceItem);
+    $entityManager->flush();
+
+    return new JsonResponse([], Response::HTTP_OK);
+
 }
+
+/**
+ * @Route("produceitem/download", name="List_download")
+ */
+public function download() {
+
+  $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
+  $ProduceItem = $repository->findAll();
+  $fileName = 'Shopping_list.txt';
+
+  $fp = fopen($filename, 'w');
+
+  $content = '';
+
+  foreach($ProduceItem as $produce) {
+    $fn = $produce->getName();
+    $ln = $produce->getExpirationDate();
+    $ic =  $produce->getIcon();
+    $content .="$fn $ln $ic:\n";
+  }
+}
+
+fwrite($fp, $content);
+fclose($fp);
+
+return $this->file->file('Shopping_list.txt')
