@@ -121,8 +121,8 @@ class ProduceItemController extends BaseController{
         'Produce '. $ProduceItem->getId(). ' was updated'
       );
 
-        return $this->render('list.html.twig', [ 'form' => $form => createView(), 'label =>'Add Item']);
+      //  return $this->render('list.html.twig', [ 'form' => $form => createView(), 'label' =>'Add Item']);
   }
 
-
+}
 }
